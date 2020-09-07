@@ -1,27 +1,27 @@
-x0 = 5;  %ОБЮБМШОПЕ ЪОБЮЕОЙЕ ЦЕТФЧ
-y0 = 5;  %ОБЮБМШОПЕ ЪОБЮЕОЙЕ ИЙЭОЙЛПЧ
-z0 = 10; %ОБЮБМШОПЕ ЪОБЮЕОЙЕ РЙФБОЙС ДМС ЦЕТФЧ
+x0 = 5;  
+y0 = 5;  
+z0 = 10; 
 
-x_goal = 7; %ГЕМЕЧПЕ ЪОБЮЕОЙЕ ЦЕТФЧ
+x_goal = 7; 
 
 
-fid = fopen( 'numbers.txt', 'wt' );%открытие файла для записи 
+fid = fopen( 'numbers.txt', 'wt' );
 
-left = 1; %левая граница интервала
-right = 100; %правая граница интервала
-step = 0.01; %шаг 
+left = 1; 
+right = 100; 
+step = 0.01;
 mass = left:step:right;
 size = length(mass);
 
-x = zeros(1,size); %матрица значений x
-y = zeros(1,size); %матрица значений y
-z = zeros(1,size); %матрица значений z
+x = zeros(1,size); 
+y = zeros(1,size); 
+z = zeros(1,size); 
 
 x(1) = x0;
 y(1) = y0;
 z(1) = z0;
 
-%УЙУФЕНБ ГЙЛМПЧ ДМС РПДВПТБ РПДИПДСЭЙИ ЛПЬЖЖЙГЙЕОФПЧ
+
 for T1 = 0.1:0.1:1
     for T2 = 1:1:10
         for beta = 0.1:0.1:1.5
@@ -31,7 +31,7 @@ for T1 = 0.1:0.1:1
 
                           
                           
-                                        %Окончательная система уравнений 
+                                        
                                         f1 = z(i-1) * x(i-1) - beta  * x(i-1) * y(i-1);
                                         f2 = -gamma * y(i-1) + sigma * x(i-1) * y(i-1);
                                         psi_t = x(i-1) - x_goal;
@@ -44,7 +44,7 @@ for T1 = 0.1:0.1:1
                                         U = - T1^(-1) * psi_1 + dfi;
                                        
 
-                                        %вычесление очередного  x, y, z
+                                       
 
                                         x(i) = x(i-1) + step * f1;
                                         y(i) = y(i-1) + step * f2;
@@ -52,17 +52,17 @@ for T1 = 0.1:0.1:1
                                         
                                         
                                         
-                                        rest = size - size / 10; %Посление 10% значений
+                                        rest = size - size / 10;
                                         
-                                        %Условия проверки коэфицентов
                                         
-                                        if(isnan(x(i)) || isnan(y(i))) %Проверка на бесконечность 
+                                        
+                                        if(isnan(x(i)) || isnan(y(i))) 
                                             break
-                                        elseif(i > rest && abs(psi_t)/x_goal > 0.01) %Проверка на приближение к цели  последних 10% значений
+                                        elseif(i > rest && abs(psi_t)/x_goal > 0.01) 
                                             break
-                                        elseif(x(i) > 100 || y(i) > 100) %проверки на большие числа
+                                        elseif(x(i) > 100 || y(i) > 100) 
                                             break
-                                        elseif(i==size) %при успешной проверке всех значений программа записывает их в текстовый документ 
+                                        elseif(i==size)  
                                             fprintf( fid, '%10.2f,%10.2f,%10.2f,%10.2f,%10.2f,%10.2f,%10.2f,%10.2f,%10.2f\n', T1, T2, beta, gamma, sigma, x0, y0, z0, x_goal);
 
                                         end
@@ -74,4 +74,4 @@ for T1 = 0.1:0.1:1
     end
 end
 
-fclose(fid); %ЪБЛТЩФЙЕ ЖБКМБ
+fclose(fid); 

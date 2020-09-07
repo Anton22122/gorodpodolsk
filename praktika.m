@@ -49,8 +49,8 @@ end
 mass_plot = 1:size;
 hold on;
 plot(mass_plot, x, 'b', mass_plot, y, 'r', mass_plot, z, 'g');
-legend('Жертвы', 'Хищники ', 'Питание');
-title('Хищник-Жертва с питанием');
+legend('Prey', 'Predator ', 'Food');
+title('Predator-Prey with Food');
 ylabel('X,Y,Z');
 grid on;
 hold off;
